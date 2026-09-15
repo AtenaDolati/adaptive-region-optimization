@@ -641,8 +641,6 @@ adaptive-region-optimization/
 │       ├── certification/
 │       └── termination/
 │
-├── tests/
-│
 ├── README.md
 │
 └── pyproject.toml
@@ -656,9 +654,6 @@ adaptive-region-optimization/
 
 - **`src/arrgo/`**  
   Contains the modular Python implementation of the ARRGO framework.
-
-- **`tests/`**  
-  Contains automated tests used to validate the implementation and its main components.
 
 - **`README.md`**  
   Provides an overview of the project, its methodology, theoretical foundations, implementation, and experimental findings.
