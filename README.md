@@ -31,7 +31,7 @@ The central principle of ARRGO is to combine:
 ARRGO addresses bounded global optimization problems in which the goal is to find the best value of an objective function within a specified search domain.
 
 $$
-\max_{x \in \Omega} f(x)
+\max_{x \in [l,r]} f(x)
 $$
 
 The objective function is treated as a black-box evaluator. ARRGO does not require access to analytical derivatives or an explicit mathematical form of the objective function.
@@ -267,6 +267,11 @@ ARRGO requires structural refinement to increase spatial resolution.
 
 When a region is split, its child regions must satisfy the configured contraction requirement.
 
+$$
+\max(s-l,r-s)\leq\rho(r-l),
+\qquad 0<\rho<1
+$$
+
 Repeated refinement therefore produces regions with progressively smaller spatial extent.
 
 Spatial contraction is the structural mechanism that allows ARRGO to resolve increasingly localized parts of the search domain.
@@ -300,9 +305,23 @@ ARRGO also provides a certification-oriented mode based on Lipschitz bounds.
 
 When a valid Lipschitz constant is known, evaluated points can be used to construct lower and upper bounds on the objective function within a region.
 
+$$
+L_R(x)=\max_i\left[f(x_i)-L|x-x_i|\right]
+$$
+
+$$
+U_R(x)=\min_i\left[f(x_i)+L|x-x_i|\right]
+$$
+
 These bounds provide a principled estimate of the remaining optimization uncertainty.
 
 A global certification gap can then be used as a termination criterion.
+
+$$
+\Delta_{\mathrm{global}}
+=
+P_{\mathrm{global}}-f_{\mathrm{best}}
+$$
 
 If the certification conditions are satisfied and the global gap falls below the specified tolerance, the current incumbent can be considered epsilon-optimal under the assumed Lipschitz model.
 
